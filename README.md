@@ -1,1 +1,2 @@
-# etch-a-sketch
+# ETCH A Sketch
+A The Odin Project Challenger
