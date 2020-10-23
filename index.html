@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Etch-a-Sketch</title>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+</head>
+<body>
+  
+  <button id="controller">Reset</button>
+  <p id="status-label" disabled></p>
+
+  <div id="options">
+  	<button data-action="clear">Clear<span>grid container</span></button>
+  	<button data-action="resize">Change<span>grid container size</span></button>
+  </div>
+
+  <script type="text/javascript" src="scripts/scripts.js"></script>
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>

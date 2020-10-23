@@ -1,0 +1,76 @@
+* {
+	box-sizing: border-box;
+}
+
+#container {
+  margin: 10px auto;
+  display: grid;
+  background-color: #E8DD8A;
+  grid-gap: 1px;
+}
+
+#status-label[disabled]  {
+	display: none;
+}
+
+#status-label{
+	color: #13232E;
+	font-family: monospace;
+	font-size: 16px;
+	text-transform: lowercase;
+	margin-top: 10px;
+}
+
+button {
+	font-family: monospace, sans-serif;
+	outline: none;
+	text-transform: lowercase;
+	letter-spacing: 2px;
+	text-align: center;
+	border: none;
+	background-color: #13232E;
+	color: #E8DD8A;
+	height: 45px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #E8DD8A;
+	color: #13232E;
+}
+
+#controller {
+	font-size: 20px;
+	text-transform: lowercase;
+	letter-spacing: 5px;
+	height: 45px;
+}
+
+#options {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	width: 100%;
+}
+
+#options button {
+  width: 50%;
+  text-align: left;
+}
+
+#options button span{
+  display: block;
+  font-size: 12px;
+}
+
+#options button:nth-child(2) {
+  margin: 0 1.665px !important;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
