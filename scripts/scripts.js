@@ -159,16 +159,14 @@ function queryValidSize(min, max, message, callback, force = false) {
         continue;
       } else {
         if(!newSize) {
-  	      sendGridStatus("Cancelled. Insert valid Number.");
-  	      return;
-  	    }
+          sendGridStatus("Cancelled. Insert valid Number.");
+          return;
+        }
       }
     }
   }
   return callback(newSize);
 }
-
-
 
 gridController.addEventListener("click", resetGrid, true);
 gridEditorOptions.addEventListener("click", clearGridContent, false);
