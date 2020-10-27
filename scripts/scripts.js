@@ -58,6 +58,10 @@ function createGridContainer(containerSize, gridSize) {
 
   gridContainer.addEventListener("mouseover", hoverItem, false);
   gridContainer.addEventListener("mouseout", hoverOutItem, false);
+
+  gridContainer.addEventListener("touchstart", hoverItem, false);
+  gridContainer.addEventListener("touchend", touchEnd, false);
+
 }
 
 /*getRandomIntInclusive FUNCTION BY devdocs.io*/
@@ -78,10 +82,17 @@ function randomRGBStyleSheet() {
   return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
 }
 
+let lastClickedItem;
 function hoverItem(event) {
   let item = event.target;
   if(item == gridContainer) return;
   item.style.backgroundColor = grid.color_item;
+  lastClickedItem = item;
+}
+
+function touchEnd(event) {
+  if(lastClickedItem != null) 
+    hoverOutItem(event);
 }
 
 function hoverOutItem(event) {
