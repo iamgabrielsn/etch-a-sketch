@@ -6,8 +6,8 @@ let gridStatusLog = document.getElementById("status-label");
 let grid = {
   color_item: '#E8DD8A',
   color_item_bg: '#13232E',
-  size: 500,
-  layout: 8
+  size: 5,
+  layout: 16
 };
 
 
@@ -26,11 +26,10 @@ function createElement(parentNode = null, elementType, elementId, ...classList) 
   return element;
 }
 
-function createGrid(size, containerSize) {
-  let gridItemSize = containerSize/size/2;
+function createGrid(size) {
 
-  gridContainer.style.gridTemplateColumns = `repeat(${size}, ${gridItemSize*2}px)`;
-  gridContainer.style.gridTemplateRows = `repeat(${size}, ${gridItemSize*2}px)`;
+  gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
   for(let x = 0; x < size; x++) {
     for(let y = 0; y < size; y++) {
@@ -41,25 +40,30 @@ function createGrid(size, containerSize) {
   }
 }
 
-/*
-A expressão, containerSize-gridSize, controla o grid-gap para não vazar os itens do layout.
-*/
+const DEFAULT_REM = 6.24;
 function createGridContainer(containerSize, gridSize) {
 
   gridContainer = createElement(null, "div", "container");
-  gridContainer.style.maxWidth = containerSize+"px";
-  gridContainer.style.maxHeight = containerSize+"px";
-  gridContainer.style.width = containerSize+"px";
-  gridContainer.style.height = containerSize+"px";
+  let layoutSize = (DEFAULT_REM*containerSize)+"rem";
+
+  gridContainer.style.width = layoutSize;
+  gridContainer.style.height = gridContainer.style.width;
 
   document.body.insertBefore(gridContainer, gridEditorOptions);
 
-  createGrid(gridSize, containerSize-gridSize);
-  gridController.style.width = containerSize+"px";
-  gridEditorOptions.style.width = containerSize+"px";
+  createGrid(gridSize);
+
+  gridController.style.width = layoutSize;
+  gridEditorOptions.style.width = layoutSize;
+
   gridContainer.addEventListener("mouseover", hoverItem, false);
   gridContainer.addEventListener("mouseout", hoverOutItem, false);
+
+  gridContainer.addEventListener("touchstart", hoverItem, false);
+  gridContainer.addEventListener("touchend", touchEnd, false);
+
 }
+
 /*getRandomIntInclusive FUNCTION BY devdocs.io*/
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -78,10 +82,17 @@ function randomRGBStyleSheet() {
   return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
 }
 
+let lastClickedItem;
 function hoverItem(event) {
   let item = event.target;
   if(item == gridContainer) return;
   item.style.backgroundColor = grid.color_item;
+  lastClickedItem = item;
+}
+
+function touchEnd(event) {
+  if(lastClickedItem != null) 
+    hoverOutItem(event);
 }
 
 function hoverOutItem(event) {
@@ -125,12 +136,13 @@ function resizeGridContent(event) {
   }
   if(resizeBtn.getAttribute("data-action") != "resize") return;
 
-  queryValidSize(500, 1200, "Choose a new grid size.\nMin:500. Max: 1200", size => {
+  queryValidSize(5, 12, "Choose a new grid scale.\nMin:5. Max: 12", size => {
 
     grid.size = size;
     gridContainer.remove();
     createGridContainer(grid.size, grid.layout);
     sendGridStatus("The GRID container was resized.");
+
   });
 
 }

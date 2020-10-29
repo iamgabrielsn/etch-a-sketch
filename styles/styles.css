@@ -2,35 +2,45 @@
   box-sizing: border-box;
 }
 
+body {
+  font-size: calc(0.625rem + ((1vw - 0.01px) * 0.9117));
+  min-height: 0vw;
+}
+/* 6.24rem == 100px*/
 #container {
-  margin: 10px auto;
+  margin: 0.5rem auto;
   display: grid;
   background-color: #E8DD8A;
   grid-gap: 1px;
 }
 
+body, #container, #options, #controller{
+  max-width: 100% !important;
+}
+
 #status-label[disabled]  {
-  display: none;
+  visibility: hidden;
 }
 
 #status-label{
+
   color: #13232E;
   font-family: monospace;
-  font-size: 16px;
+  font-size: 1rem;
   text-transform: lowercase;
-  margin-top: 10px;
+  margin-top: 0.5rem;
 }
 
 button {
   font-family: monospace, sans-serif;
   outline: none;
   text-transform: lowercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.12rem;
   text-align: center;
   border: none;
   background-color: #13232E;
   color: #E8DD8A;
-  height: 45px;
+  height: 3rem;
   cursor: pointer;
 }
 
@@ -40,10 +50,10 @@ button:hover {
 }
 
 #controller {
-  font-size: 20px;
+  font-size: 1.3rem;
   text-transform: lowercase;
-  letter-spacing: 5px;
-  height: 45px;
+  letter-spacing: 0.4rem;
+  height: 3rem;
 }
 
 #options {
@@ -61,11 +71,11 @@ button:hover {
 
 #options button span{
   display: block;
-  font-size: 12px;
+  font-size: 0.8rem;
 }
 
 #options button:nth-child(2) {
-  margin: 0 1.665px !important;
+  margin: 0 0.08rem !important;
 }
 
 body {
